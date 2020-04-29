@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Trove Newspaper</title>
+    </head>
+    
+    <body>
+        <!--<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>-->
+        
+        <script type="text/javascript">
+        //$ to access Jquery elements
+        $(document).ready(function() {
+                // ADD TROVE API KEY
+                var troveAPIKey = '3filjfm1hd1j7spk';
+                /*var config = {};
+                config.listSnippet = 50;
+                config.directLinks = true;
+                config.showGrid = true;
+                config.https = false;*/
+            
+                //API call
+                var url = 'http://api.trove.nla.gov.au/result?'+troveAPIKey+'&zone=newspaper&q=secular%20education';
+                $.getJSON(url, function(data) {
+                //output request
+                console.log(data); //achieve the data to console
+                          });
+             });
+        </script>
+        
+        <div id="content">
+            <div id="advsrchdiv" class="newspapersAdvSearch">
+                <a name="maincontent"></a>
+                <h1>Advanced search - Digitised newspapers <span class="secondary">and more</span> </h1>
+                <p>Enter search terms in at least one of the fields below
+                
+	           
+                    <script type="text/javascript">
+		          $(document).ready(contextualHelp.init);
+	           </script>
+	           </p>
+	
+            <form id="advsrchfrm" onsubmit="formSubmissionNewspapers()" action="/newspaper/result">
+                <fieldset id="terms" class="posrelative">
+                    <legend>Search terms</legend>
+                        <ul>
+                          <li>
+                            <label for="all" style="display:inline-block;">All of these words</label>
+                            <input type="text" id="all" name="q" value=""/>
+                          </li>
+                          <li>
+                            <label for="phrase" style="display:inline-block;">The phrase</label>
+                            <input type="text" id="phrase" name="exactPhrase" value=""/>
+                          </li>
+                          <li>
+                            <label for="any" style="display:inline-block;">Any of these words</label>
+                            <input type="text" id="any" name="anyWords" value=""/>
+                          </li>
+                          <li>
+                            <label for="without" style="display:inline-block;">Without these words</label>
+                            <input type="text" id="without" name="notWords" value=""/>
+                          </li>
+                        </ul>
+                    <button type="submit" id="advsearchbtn" class="btnsearch" style="position:absolute; bottom:15px;right:10px;">Search</button>
+                </fieldset>
+            </form>
+            </div>
+        </div>
+    </body>
+</html>
