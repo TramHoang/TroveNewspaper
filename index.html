@@ -31,7 +31,8 @@
                 config.https = false;*/
             
                 //API call
-                var url = 'http://api.trove.nla.gov.au/result?'+troveAPIKey+'&zone=newspaper&q=secular%20education';
+                /*var url = 'http://api.trove.nla.gov.au/result?'+troveAPIKey+'&zone=newspaper&q=secular%20education';*/
+                var url = 'https://api.trove.nla.gov.au/v2/result?key=' + troveAPIKey + '&zone=newspaper&q=secular%20education’';
                 $.getJSON(url, function(data) {
                 //output request
                 console.log(data); //achieve the data to console
