@@ -74,10 +74,11 @@
                     //Open new page
                     var w = window.open("result.html");
                     w.document.writeln("<result.html>")
+                    
                     //Transfer the data to result page
-                     function passvalues(){
+                     function passValues(){
                        var heading=document.getElementById("heading").value;
-                       localStorage.setItem("textvalue",firstname);
+                       localStorage.setItem("textvalue",heading);
                        return false;
                       }
 
@@ -88,9 +89,10 @@
         
         <div class="bg-img">
             <div class="btnPP btnPPCart"><i class="fa fa-search" aria-hidden="true"></i></div>
-            <h1 style="position: absolute; top:30%; left:25%; font-family: 'Courgette', cursive; font-size: 50px;">Your way to find newspapers!</h1>
-            <p style="position: absolute; top:45%; left:25%; font-family: 'Courgette', cursive;">Click to icon or anywhere to start.</p>
-            
+            <div class="text" style="position: absolute; top:30%; left:25%; font-family: 'Courgette', cursive;" >
+                <h1 style ="font-size: 50px;">Your way to find newspapers!</h1>
+                <p>Click to icon or anywhere to start.</p>
+            </div>
         </div>
 
         <div class="site-search">
