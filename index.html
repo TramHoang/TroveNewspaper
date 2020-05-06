@@ -8,7 +8,7 @@
         <!--CSS-->
         <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
         
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
         
         
@@ -18,10 +18,24 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <!--<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>-->
         
-        
         <script type="text/javascript">
-        //$ to access Jquery elements
-        $(document).ready(function() {
+            //$ to access Jquery elements
+            $(document).ready(function() {
+
+
+                $(".btn").click(function() {
+                    //ben: get text from search query
+                    var query = $("input:text").val();
+                    console.log(query);
+
+                    //run function with query
+                    troveSearch(query)
+                });
+
+
+            });
+
+            function troveSearch(searchQuery) {
                 // ADD TROVE API KEY
                 var troveAPIKey = '3filjfm1hd1j7spk';
                 /*var config = {};
@@ -29,15 +43,47 @@
                 config.directLinks = true;
                 config.showGrid = true;
                 config.https = false;*/
-            
+                // var searchQuery = 'Ainslie';
+
                 //API call
-                /*var url = 'http://api.trove.nla.gov.au/result?'+troveAPIKey+'&zone=newspaper&q=secular%20education';*/
-                var url = 'https://api.trove.nla.gov.au/v2/result?key=' + troveAPIKey + '&zone=newspaper&q=secular%20education’';
+                var url = 'https://api.trove.nla.gov.au/v2/result?key=' + troveAPIKey + '&zone=newspaper&q=' + searchQuery;
+
                 $.getJSON(url, function(data) {
-                //output request
-                console.log(data); //achieve the data to console
-                          });
-             });
+                    //output request
+    //                console.log(data); //achieve the data to console
+
+                    var allArticles = data.response.zone[0].records.article;
+
+    //                console.log(allArticles)
+
+                    //loop through the articles
+                    for (i=0; i < allArticles.length; i++) {
+                        var singleArticle = allArticles[i];
+                        console.log(singleArticle);
+
+                        //write any jquery here to output the content onto the page
+                        var heading = singleArticle.heading;
+                        var date = singleArticle.date;
+                        var title = singleArticle.title.value;
+                        var snippet = singleArticle.snippet;
+                        var link = singleArticle.troveUrl;
+                        var img = singleArticle.url;
+                        var category = singleArticle.category;
+                       
+                    }
+                    //Open new page
+                    var w = window.open("result.html");
+                    w.document.writeln("<result.html>")
+                    //Transfer the data to result page
+                     function passvalues(){
+                       var heading=document.getElementById("heading").value;
+                       localStorage.setItem("textvalue",firstname);
+                       return false;
+                      }
+
+                });
+
+            }
         </script>
         
         <div class="bg-img">
@@ -50,10 +96,10 @@
         <div class="site-search">
             <div class="site-search-inner">
                 <div class="widget woocommerce widget_product_search">
-                    <form role="search" method="get" class="woocommerce-product-search" action="#">
+                    <form role="search" method="get" class="woocommerce-product-search" action="result.html">
                         <label class="screen-reader-text" for="woocommerce-product-search-field-1">Search for:</label>
-                        <input type="search" id="woocommerce-product-search-field-1" class="search-field" placeholder="Please type word or phrase..." value="" name="s">
-                        <input type="submit" value="Search">
+                        <input type="text" id="woocommerce-product-search-field-1" class="search-field" placeholder="Please type word..." value="" name="s">
+                        <input class="btn" type="submit" value="Search">
                         <input type="hidden" name="post_type" value="product">
                         <div class="submit_icon"><i class="spk-icon spk-icon-search"></i>
                         </div>
@@ -63,7 +109,7 @@
         </div>
         
         <!--Javascript-->
-        <script src="js/style.js"></script>
-        
+        <script src="assets/js/style.js"></script>
     </body>
+    <footer><p>This website was produced by a student in the Faculty of Arts and Design, University of Canberra, 2020.</p></footer>
 </html>
