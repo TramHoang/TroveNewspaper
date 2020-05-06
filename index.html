@@ -77,8 +77,8 @@
                     
                     //Transfer the data to result page
                      function passValues(){
-                       var heading=document.getElementById("heading").value;
-                       localStorage.setItem("textvalue",heading);
+                       var result = document.getElementById("textValue").value;
+                       localStorage.setItem("textvalue",result);
                        return false;
                       }
 
@@ -100,7 +100,7 @@
                 <div class="widget woocommerce widget_product_search">
                     <form role="search" method="get" class="woocommerce-product-search" action="result.html">
                         <label class="screen-reader-text" for="woocommerce-product-search-field-1">Search for:</label>
-                        <input type="text" id="woocommerce-product-search-field-1" class="search-field" placeholder="Please type word..." value="" name="s">
+                        <input type="text" id="textValue" class="search-field" placeholder="Please type word..." value="" name="s">
                         <input class="btn" type="submit" value="Search">
                         <input type="hidden" name="post_type" value="product">
                         <div class="submit_icon"><i class="spk-icon spk-icon-search"></i>
