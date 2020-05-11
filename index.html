@@ -1,96 +1,100 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
-        <title>Trove Newspaper</title>
-        
-        <!--CSS-->
-        <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
-        
-        <link rel="stylesheet" href="assets/css/style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-        
-        
-    </head>
-    
-    <body style="margin:0px;">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <!--<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>-->
-        
-        <script type="text/javascript">
-            //$ to access Jquery elements
-            $(document).ready(function() {
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Trove Newspaper</title>
+
+    <!--CSS-->
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 
 
-                $(".btn").click(function() {
-                    //ben: get text from search query
-                    var query = $("input:text").val();
-                    console.log(query);
+</head>
 
-                    //run function with query
-                    troveSearch(query)
-                });
+<body style="margin:0px;">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>-->
+
+    <script type="text/javascript">
+        //$ to access Jquery elements
+        $(document).ready(function() {
+            //hide the second page straight away
+            // you could also do these with CSS
+            $('.secondPage').hide();
+
+            $(".btn").click(function() {
+                //ben: get text from search query
+                var query = $("input:text").val();
+                console.log(query);
+
+                //run function with query
+                troveSearch(query)
 
 
             });
 
-            function troveSearch(searchQuery) {
-                // ADD TROVE API KEY
-                var troveAPIKey = '3filjfm1hd1j7spk';
-                /*var config = {};
-                config.listSnippet = 50;
-                config.directLinks = true;
-                config.showGrid = true;
-                config.https = false;*/
-                // var searchQuery = 'Ainslie';
 
-                //API call
-                var url = 'https://api.trove.nla.gov.au/v2/result?key=' + troveAPIKey + '&zone=newspaper&q=' + searchQuery;
+        });
 
-                $.getJSON(url, function(data) {
-                    //output request
-    //                console.log(data); //achieve the data to console
+        function troveSearch(searchQuery) {
+            // ADD TROVE API KEY
+            var troveAPIKey = '3filjfm1hd1j7spk';
+            /*var config = {};
+            config.listSnippet = 50;
+            config.directLinks = true;
+            config.showGrid = true;
+            config.https = false;*/
+            // var searchQuery = 'Ainslie';
 
-                    var allArticles = data.response.zone[0].records.article;
+            //API call
+            /*var url = 'http://api.trove.nla.gov.au/result?'+troveAPIKey+'&zone=newspaper&q=secular%20education';*/
 
-    //                console.log(allArticles)
+            var url = 'https://api.trove.nla.gov.au/v2/result?key=' + troveAPIKey + '&zone=newspaper&q=' + searchQuery;
 
-                    //loop through the articles
-                    for (i=0; i < allArticles.length; i++) {
-                        var singleArticle = allArticles[i];
-                        console.log(singleArticle);
+            $.getJSON(url, function(data) {
+                //output request
+                //                console.log(data); //achieve the data to console
 
-                        //write any jquery here to output the content onto the page
-                        var heading = singleArticle.heading;
-                        var date = singleArticle.date;
-                        var title = singleArticle.title.value;
-                        var snippet = singleArticle.snippet;
-                        var link = singleArticle.troveUrl;
-                        var img = singleArticle.url;
-                        var category = singleArticle.category;
-                       
-                    }
-                    //Open new page
-                    var w = window.open("result.html");
-                    w.document.writeln("<result.html>")
-                    
-                    //Transfer the data to result page
-                     function passValues(){
-                       var result = document.getElementById("textValue").value;
-                       localStorage.setItem("textvalue",result);
-                       return false;
-                      }
+                var allArticles = data.response.zone[0].records.article;
 
-                });
+                //                console.log(allArticles)
 
-            }
-        </script>
-        
+                //loop through the articles
+                for (i = 0; i < allArticles.length; i++) {
+                    var singleArticle = allArticles[i];
+
+                    //let's see what data a single page returns
+                    console.log(singleArticle);
+
+                    //write any jquery here to output the content onto the page
+                    $('.results').append('<li>' + singleArticle.heading + '</li>');
+
+                };
+
+            });
+
+            // rather than creating an actual new page
+            // just split the content into div's that act like new pages 
+            // then show and hide them as needed
+
+            $('.firstPage').hide();
+            $('.secondPage').show();
+
+
+        }
+    </script>
+
+    <div class="firstPage">
+
+
         <div class="bg-img">
             <div class="btnPP btnPPCart"><i class="fa fa-search" aria-hidden="true"></i></div>
-            <div class="text" style="position: absolute; top:30%; left:25%; font-family: 'Courgette', cursive;" >
-                <h1 style ="font-size: 50px;">Your way to find newspapers!</h1>
+            <div class="text" style="position: absolute; top:30%; left:25%; font-family: 'Courgette', cursive;">
+                <h1 style="font-size: 50px;">Your way to find newspapers!</h1>
                 <p>Click to icon or anywhere to start.</p>
             </div>
         </div>
@@ -109,9 +113,17 @@
                 </div>
             </div>
         </div>
-        
-        <!--Javascript-->
-        <script src="assets/js/style.js"></script>
-    </body>
-    <footer><p>Produced in the Faculty of Arts and Design, University of Canberra, 2020</p></footer>
-</html>
+    </div>
+
+    <div class="secondPage">
+
+        <ul class="results"></ul>
+
+    </div>
+
+    <!--Javascript-->
+    <script src="assets/js/style.js"></script>
+</body>
+<footer>
+    <p>Produced in the Faculty of Arts and Design, University of Canberra, 2020</p>
+</footer></html>
