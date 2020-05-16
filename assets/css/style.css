@@ -10,7 +10,7 @@ html *, body * {
 html a, body a {
   text-decoration: none;
 }
-html .bg-img, body .bg-img {
+html .firstPage, body .firstPage {
   position:relative;
   width:100%;
   height:100%;
@@ -18,7 +18,7 @@ html .bg-img, body .bg-img {
   background-size: cover;
   z-index: 0;
 }
-html .bg-img .btnPP, body .bg-img .btnPP {
+html .firstPage .btnPP, body .firstPage .btnPP {
   z-index: 1;
   position: fixed;
   top: 20px;
@@ -29,28 +29,28 @@ html .bg-img .btnPP, body .bg-img .btnPP {
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
-html .bg-img .btnPP i, body .bg-img .btnPP i {
+html .firstPage .btnPP i, body .firstPage .btnPP i {
   display: block;
   font-size: 28px;
   color: #fff;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
-html .bg-img .btnPP i:hover, body .bg-img .btnPP i:hover {
+html .firstPage .btnPP i:hover, body .firstPage .btnPP i:hover {
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
 }
-html .bg-img .btnPP.btnPPCartEmpty, body .bg-img .btnPP.btnPPCartEmpty {
+html .firstPage .btnPP.btnPPCartEmpty, body .firstPage .btnPP.btnPPCartEmpty {
   right: 50px;
   opacity: 0;
   -webkit-transition: all 1s;
   transition: all 1s;
   z-index: -1;
 }
-html .bg-img .btnPP.btnPPCartEmpty.active, body .bg-img .btnPP.btnPPCartEmpty.active {
+html .firstPage .btnPP.btnPPCartEmpty.active, body .firstPage .btnPP.btnPPCartEmpty.active {
   transform: translateX(-50px);
   opacity: 1;
   z-index: 1;
 }
-html .bg-img:before, body .bg-img:before {
+html .firstPage .bg-img:before, body .firstPage .bg-img:before {
   content: '';
   position: absolute;
   top: 0;
@@ -169,4 +169,12 @@ html .bg-img:before, body .bg-img:before {
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.wrapper{
+    background-color: white;
+    margin-right: 20%;
+    margin-left: 20%;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
