@@ -3,7 +3,7 @@
     
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Trove Newspaper</title>
         
         <!--CSS-->
@@ -17,7 +17,6 @@
     
     <body style="margin:0px;">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <!--<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>-->
         
         <script type="text/javascript">
             //$ to access Jquery elements
@@ -57,20 +56,13 @@
                         console.log(singleArticle);
 
                         //write any jquery here to output the content onto the page
-                       /* var heading = singleArticle.heading;
-                        $('.heading').html(heading);
-                        var date = singleArticle.date;
-                        $('.date').html(date);
-                        var title = singleArticle.title.value;
-                        var snippet = singleArticle.snippet;
-                        var link = singleArticle.troveUrl;
-                        var img = singleArticle.url;*/
                         
                         $('.results').append('<li>' + singleArticle.heading + '</li>');
                         $('.results').append('<p>'+singleArticle.date+ '</p>');
                         $('.results').append('<p>'+singleArticle.title.value+ '</p>');
-                        $('.results').append('<p style="text">' +singleArticle.snippet+ '</p>');
-                        $('.results').append('<p>' +singleArticle.troveUrl+singleArticle.url+ '</p>');
+                        $('.results').append('<p>' +singleArticle.snippet+ '</p>');
+                        $('.results').append('<p>' +singleArticle.troveUrl+ '</p>');
+                        
                     };
 
                 });
